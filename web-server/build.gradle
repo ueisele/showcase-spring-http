@@ -1,10 +1,10 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.2'
-	id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+	id 'org.springframework.boot' version '2.7.9'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 	id 'java'
 }
 
-sourceCompatibility = '18'
+sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
@@ -21,4 +21,11 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+// required for podman
+tasks.named("bootBuildImage") {
+	docker {
+		bindHostToBuilder = true
+	}
 }

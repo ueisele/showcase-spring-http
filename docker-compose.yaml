@@ -116,8 +116,11 @@ services:
   consul-registrator:
     image: gliderlabs/registrator:master
     restart: always
+    privileged: true
+    # docker -> /var/run/docker.sock
+    # podman -> /run/user/1000/podman/podman.sock
     volumes:
-      - /var/run/docker.sock:/tmp/docker.sock
+      - /var/run/docker.sock:/tmp/docker.sock:z
     command: [ "-internal", "consul://consul:8500" ]
 
   prometheus:
@@ -126,7 +129,7 @@ services:
     ports:
       - 9090:9090
     volumes:
-      - ./platform/prometheus/config.yaml:/etc/prometheus/prometheus.yml
+      - ./platform/prometheus/config.yaml:/etc/prometheus/prometheus.yml:z
     labels:
       SERVICE_9090_NAME: "prometheus"
       SERVICE_9090_TAGS: "platform"
@@ -137,7 +140,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./platform/grafana/provisioning/:/etc/grafana/provisioning
+      - ./platform/grafana/provisioning/:/etc/grafana/provisioning:z
     environment:
       GF_AUTH_DISABLE_LOGIN_FORM: "true"
       GF_AUTH_ANONYMOUS_ENABLED: "true"

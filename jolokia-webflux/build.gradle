@@ -1,14 +1,14 @@
 plugins {
     id 'java'
 }
-sourceCompatibility = '18'
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation platform("org.springframework.boot:spring-boot-dependencies:2.7.2")
+    implementation platform("org.springframework.boot:spring-boot-dependencies:2.7.9")
 
     implementation 'org.jolokia:jolokia-core'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -16,7 +16,7 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:2.7.2"
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:2.7.9"
 }
 
 test {

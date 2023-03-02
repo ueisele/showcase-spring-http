@@ -1,4 +1,4 @@
 subprojects {
-    group 'de.novatec'
+    group 'net.uweeisele'
     version '1.0'
 }
